@@ -1,0 +1,17 @@
+kind: pipeline
+type: docker
+name: build
+steps:
+- name: sync-to-github
+  image: appleboy/drone-git-push
+  settings:
+    branch: master
+    remote: git@github.com:wrpota/go-zero-admin.git
+    remote_name: master
+    force: true
+    commit: true
+    ssh_key: 
+      from_secret: SSH-KEY
+trigger:
+  branch:
+  - master
